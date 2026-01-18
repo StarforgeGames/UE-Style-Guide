@@ -351,11 +351,14 @@ There are multiple ways to lay out the content of a UE project. In this style, w
         |-- <a href="#2.5">Core</a>
         |   |-- Actors
         |   |-- AI
-        |   |-- Inputs
         |   |-- Engine
         |   |-- Environment
         |   |-- <a href="#2.1.2">GameModes</a>
+        |   |-- Input
         |   |-- Items
+        |   |-- Player
+        |   |-- Vehicles
+        |   |-- Weapons
         |-- Effects
         |   |-- Electrical
         |   |   |-- Sounds
@@ -374,18 +377,18 @@ There are multiple ways to lay out the content of a UE project. In this style, w
         |   |-- Items
         |   |   |-- Interactables
         |   |   |-- Pickups
-        |   |   |-- Weapons
-        |   |   |   |-- Common
-        |   |   |   |-- Pistols
-        |   |   |   |   |-- DesertEagle
-        |   |   |   |   |-- RocketPistol
-        |   |   |   |-- Rifles
         |   |-- Player
         |   |   |-- Dialog
         |   |   |-- Sounds
         |   |-- Vehicles
         |   |   |-- Buggy
         |   |   |-- Tank
+        |   |-- Weapons
+        |   |   |-- Common
+        |   |   |-- Pistols
+        |   |   |   |-- DesertEagle
+        |   |   |   |-- RocketPistol
+        |   |   |-- Rifles
         |-- Environment
         |   |-- Music
         |   |-- Industrial
@@ -403,7 +406,7 @@ There are multiple ways to lay out the content of a UE project. In this style, w
         |   |-- Campaign1
         |   |-- Campaign2
         |   |-- Experimental
-        |-- <a href="#2.8">MaterialLibrary</a>
+        |-- <a href="#2.8">Materials</a>
         |   |-- Debug
         |   |-- Metal
         |   |-- Paint
@@ -436,6 +439,10 @@ The reasons for this structure are listed in the following sub-sections.
 > 2.7 [Large Sets](#structure-large-sets)
 
 > 2.8 [Material Library](#structure-material-library)
+
+> 2.9 [No Empty Folders](#structure-no-empty-folders)
+
+> 2.10 [Content Source Folder](#structure-content-source-folder)
 
 <a name="2.1"></a>
 <a name="structure-folder-names"><a>
@@ -585,17 +592,17 @@ For example, animations that are shared across multiple characters should lay in
 
 <a name="2.8"></a>
 <a name="structure-material-library"></a>
-### 2.8 `MaterialLibrary`
+### 2.8 `Material Library`
 
-If your project makes use of master materials, layered materials, or any form of reusable materials or textures that do not belong to any subset of assets, these assets should be located in `Content/Project/MaterialLibrary`.
+If your project makes use of master materials, layered materials, or any form of reusable materials or textures that do not belong to any subset of assets, these assets should be located in `Content/Project/Materials`.
 
 This way all 'global' materials have a place to live and are easily located.
 
-> This also makes it incredibly easy to enforce a 'use material instances only' policy within a project. If all artists and assets should be using material instances, then the only regular material assets that should exist are within this folder. You can easily verify this by searching for base materials in any folder that isn't the `MaterialLibrary`.
+> This also makes it incredibly easy to enforce a 'use material instances only' policy within a project. If all artists and assets should be using material instances, then the only regular material assets that should exist are within this folder. You can easily verify this by searching for base materials in any folder that isn't the `Materials`.
 
-The `MaterialLibrary` doesn't have to consist of purely materials. Shared utility textures, material functions, and other things of this nature should be stored here as well within folders that designate their intended purpose. For example, generic noise textures should be located in `MaterialLibrary/Utility`.
+`Materials` doesn't have to consist of purely materials. Shared utility textures, material functions, and other things of this nature should be stored here as well within folders that designate their intended purpose. For example, generic noise textures should be located in `Materials/Utility`.
 
-Any testing or debug materials should be within `MaterialLibrary/Debug`. This allows debug materials to be easily stripped from a project before shipping and makes it incredibly apparent if production assets are using them if reference errors are shown.
+Any testing or debug materials should be within `Materials/Debug`. This allows debug materials to be easily stripped from a project before shipping and makes it incredibly apparent if production assets are using them if reference errors are shown.
 
 <a name="2.9"></a>
 <a name="structure-no-empty-folders"></a>
@@ -615,10 +622,9 @@ If you find that the content browser has an empty folder you can't delete, you s
 
 <a name="2.10"></a>
 <a name="structure-content-source-folder"></a>
-
 ### 2.10 Content Source Folder
 
-Any raw source data for art and other assets used in the Content folder,  like `blend`, `psd` or `mxproj` files, should also be versioned in a `ContentSource` folder. This folder should be located in the Unreal projects' root. It can be versioned either in the same source control repository as the Unreal project or a different repository if the raw files' size grows too big.
+Any raw source data for art and other assets used in the Content folder, like `blend`, `psd`, `aup` or `rpp` files, should also be versioned in a `ContentSource` folder. This folder should be located in the Unreal projects' root. It can be versioned either in the same source control repository as the Unreal project or a different repository if the raw files' size grows too big.
 
 **[⬆ Back to Top](#table-of-contents)**
 
